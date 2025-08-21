@@ -2,6 +2,7 @@ import React, { useState } from "react"
 
 import searchSvg from "../assets/search.svg"
 import { CATEGORIES } from "../utils/categories";
+import { formatCurreny } from "../utils/formatCurrency";
 
 import { Input } from "../components/Input"
 import { Button } from "../components/Button";
@@ -11,7 +12,7 @@ const REFUND_EXAMPLE = {
   id: '123',
   name: 'Israel',
   category: 'Transporte',
-  amount: '34,50',
+  amount: formatCurreny(34.5).replace('R$', ''),
   categoryImg: CATEGORIES['transport'].icon
 }
 
