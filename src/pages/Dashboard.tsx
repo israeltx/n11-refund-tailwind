@@ -19,12 +19,26 @@ const REFUND_EXAMPLE = {
 
 export function Dashboard() {
   const [name, setName] = useState('')
+  const [page, setPage] = useState(1)
+  const [totalOfPages, setTotalOfPages] = useState(10)
 
   function fetchRefunds(e: React.FormEvent) {
     e.preventDefault()
     console.log(name);
   }
 
+  function handlePagination(action: 'next' | 'previous') {
+    setPage((prevPage) => {
+      if (action === 'next' && prevPage < totalOfPages) {
+        return prevPage + 1
+      }
+
+      if (action === 'previous' && prevPage > 1) {
+        return prevPage -1
+      }
+      return prevPage
+    })
+  }
 
   return (
     <div className="bg-gray-500 rounded-xl p-10 md:min-w-[768px]">
@@ -39,8 +53,10 @@ export function Dashboard() {
         <RefundItem data={REFUND_EXAMPLE} />
       </div>
       <Pagination
-        current={1}  
-        total={10}
+        current={page}  
+        total={totalOfPages}
+        onNext={() => handlePagination('next')}
+        onPrevious={() => handlePagination('previous')}
       />
     </div>
   )
