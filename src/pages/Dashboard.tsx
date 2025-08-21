@@ -1,9 +1,19 @@
 import React, { useState } from "react"
 
 import searchSvg from "../assets/search.svg"
+import { CATEGORIES } from "../utils/categories";
 
 import { Input } from "../components/Input"
 import { Button } from "../components/Button";
+import { RefundItem } from "../components/RefundItem";
+
+const REFUND_EXAMPLE = {
+  id: '123',
+  name: 'Israel',
+  category: 'Transporte',
+  amount: '34,50',
+  categoryImg: CATEGORIES['transport'].icon
+}
 
 export function Dashboard() {
   const [name, setName] = useState('')
@@ -22,6 +32,10 @@ export function Dashboard() {
         <Input placeholder="Pesquisa pelo nome" onChange={(e) => setName(e.target.value)}/>
         <Button type="submit" variant="icon"><img src={searchSvg} alt="Ícone de pesquisa" className="w-5" /></Button>
       </form>
+
+      <div>
+        <RefundItem data={REFUND_EXAMPLE} />
+      </div>
     </div>
   )
 }
